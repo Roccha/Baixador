@@ -1,28 +1,20 @@
 const fileInput = document.querySelector("input"),
 downloadBtn = document.querySelector("button");
 
-downloadBtn.addEventListener("click", e => {
+downloadBtn.addEventListener("click", function (e) {
     e.preventDefault();
-    downloadBtn.innerText = 
     fetchFile(fileInput.value);
-})
+});
 
 function fetchFile(url){
-    fetch(url).then(res => res.blob()).then(file =>{
-        let tempUrl = URL.createObjectURL(file);
+    fetch(url).then( res => res.blob()).then(file =>{
+        let tempUrl = url.createObjectURL(file);
         let aTag = document.createElement("a");
         aTag.href = tempUrl;
-        aTag.download = url.replace(/^.*[\\\/]/,'');
+        aTag.download = "filename";
         document.body.appendChild(aTag);
         aTag.click();
         aTag.remove();
-        URL.revokeObjectURL(tempUrl);
-        downloadBtn.innerText = "Downloading file";
-
         
-    }).catch(() =>{
-        
-
-});
+    })
 }
-
