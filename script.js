@@ -1,20 +1,17 @@
-const fileInput = document.querySelector("input"),
-downloadBtn = document.querySelector("button");
+function clicar(){
 
-downloadBtn.addEventListener("click", function (e) {
-    e.preventDefault();
-    fetchFile(fileInput.value);
-});
+    var logar = document.getElementById('login').value;
 
-function fetchFile(url){
-    fetch(url).then( res => res.blob()).then(file =>{
-        let tempUrl = url.createObjectURL(file);
-        let aTag = document.createElement("a");
-        aTag.href = tempUrl;
-        aTag.download = "filename";
-        document.body.appendChild(aTag);
-        aTag.click();
-        aTag.remove();
+    var idade1 = document.getElementById('idade').value;
+
+    var senha = document.getElementById('senha').value;
+
+    if(logar == "admin" && senha == "admin" && idade1 >= 18){
+        alert('Conectando...');
+        location.href ="home.html";
         
-    })
+    }else{
+        alert('Usuario ou senha inválidos, você precisar ter mais de 18 anos.');
+    }
+
 }
